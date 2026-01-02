@@ -11,7 +11,6 @@ package Controller;
 
 import Model.Movie;
 import Model.MovieDatabase;
-import View.Admin;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
@@ -102,9 +101,7 @@ public class MovieController {
         return database.getAllMovies();
     }
     
-    public ArrayList<Movie> getDashboardMovies() {
-        return database.getDashboardMovies();
-    }
+   
     
     public ArrayList<Movie> getHistory() {
         return database.getHistory();

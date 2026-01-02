@@ -22,8 +22,6 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.table.DefaultTableModel mainModel;
     private javax.swing.table.DefaultTableModel historyModel;
 
-    //private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Admin.class.getName());
-
     public Admin() {
         initComponents();
         cardLayout = (CardLayout) parentPanel.getLayout();
@@ -732,7 +730,7 @@ public class Admin extends javax.swing.JFrame {
     private void loadDashboardData() {
         dashboardModel.setRowCount(0);
         
-        java.util.ArrayList<Model.Movie> movies = movieController.getDashboardMovies();
+        java.util.ArrayList<Model.Movie> movies = movieController.getAllMovies();
         
         for (Model.Movie movie : movies) {
             dashboardModel.addRow(new Object[]{ movie.getId(), movie.getTitle(), movie.getDirector(), movie.getYear(), movie.getGenre(), movie.getRating()});

@@ -149,10 +149,6 @@ public class MovieDatabase {
         return new ArrayList<>(allMovies);
     }
     
-    public ArrayList<Movie> getDashboardMovies() {
-        return new ArrayList<>(dashboardMovies);
-    }
-    
     public ArrayList<Movie> getHistory() {
         return new ArrayList<>(historyQueue);
     }

@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package View;
-import java.awt.Color;
-import Controller.LoginController;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,8 +10,6 @@ import javax.swing.JOptionPane;
  * @author giria
  */
 public class Login extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Login.class.getName());
 
     public Login() {
         initComponents();
@@ -153,10 +149,7 @@ public class Login extends javax.swing.JFrame {
         String password = new String(passwordField.getPassword()).trim();
     
         if (username.isEmpty() || password.isEmpty()) {
-            JOptionPane.showMessageDialog(this, 
-                "Please enter both username and password!", 
-                "Empty Fields", 
-                JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please enter both username and password!", "Empty Fields", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
