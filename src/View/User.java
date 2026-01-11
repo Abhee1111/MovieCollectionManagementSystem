@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package View;
+import java.awt.Color;
 
 /**
  *
@@ -77,6 +78,7 @@ public class User extends javax.swing.JFrame {
         systemUserLogo.setText("SYSTEM");
         userSidePanel.add(systemUserLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, -1));
 
+        userHome.setBackground(new java.awt.Color(255, 255, 0));
         userHome.setFont(new java.awt.Font("STZhongsong", 1, 18)); // NOI18N
         userHome.setText("Home");
         userHome.addActionListener(new java.awt.event.ActionListener() {
@@ -97,10 +99,20 @@ public class User extends javax.swing.JFrame {
 
         userHistory.setFont(new java.awt.Font("STZhongsong", 1, 18)); // NOI18N
         userHistory.setText("History");
+        userHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userHistoryActionPerformed(evt);
+            }
+        });
         userSidePanel.add(userHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 140, 50));
 
         userSearchSort.setFont(new java.awt.Font("STZhongsong", 1, 16)); // NOI18N
         userSearchSort.setText("Search/Sort");
+        userSearchSort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userSearchSortActionPerformed(evt);
+            }
+        });
         userSidePanel.add(userSearchSort, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, 140, 50));
 
         userSideLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/side panel.png"))); // NOI18N
@@ -126,12 +138,32 @@ public class User extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void userHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userHomeActionPerformed
-        // TODO add your handling code here:
+        userHome.setBackground(Color.yellow);
+        userManage.setBackground(Color.white);
+        userSearchSort.setBackground(Color.white);
+        userHistory.setBackground(Color.white);// TODO add your handling code here:
     }//GEN-LAST:event_userHomeActionPerformed
 
     private void userManageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userManageActionPerformed
-        // TODO add your handling code here:
+        userHome.setBackground(Color.white);
+        userManage.setBackground(Color.yellow);
+        userSearchSort.setBackground(Color.white);
+        userHistory.setBackground(Color.white);// TODO add your handling code here:
     }//GEN-LAST:event_userManageActionPerformed
+
+    private void userHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userHistoryActionPerformed
+        userHome.setBackground(Color.white);
+        userManage.setBackground(Color.white);
+        userSearchSort.setBackground(Color.white);
+        userHistory.setBackground(Color.yellow);// TODO add your handling code here:
+    }//GEN-LAST:event_userHistoryActionPerformed
+
+    private void userSearchSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userSearchSortActionPerformed
+        userHome.setBackground(Color.white);
+        userManage.setBackground(Color.white);
+        userSearchSort.setBackground(Color.yellow);
+        userHistory.setBackground(Color.white);// TODO add your handling code here:
+    }//GEN-LAST:event_userSearchSortActionPerformed
 
     /**
      * @param args the command line arguments
