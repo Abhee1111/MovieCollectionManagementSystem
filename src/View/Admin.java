@@ -77,15 +77,14 @@ public class Admin extends javax.swing.JFrame {
         historyTable = new javax.swing.JTable();
         deleteHistoryButton = new javax.swing.JButton();
         sidePanel = new javax.swing.JPanel();
-        Logo2 = new javax.swing.JLabel();
-        Logo4 = new javax.swing.JLabel();
-        Logo5 = new javax.swing.JLabel();
+        MClogo = new javax.swing.JLabel();
+        manageLogo = new javax.swing.JLabel();
+        systemLogo = new javax.swing.JLabel();
         Home = new javax.swing.JButton();
         Manage = new javax.swing.JButton();
         SearchSort = new javax.swing.JButton();
         History = new javax.swing.JButton();
         sidePanelBG = new javax.swing.JLabel();
-        Logo6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -493,20 +492,20 @@ public class Admin extends javax.swing.JFrame {
 
         sidePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Logo2.setBackground(new java.awt.Color(51, 51, 255));
-        Logo2.setFont(new java.awt.Font("STXinwei", 1, 24)); // NOI18N
-        Logo2.setText("Movie Collection");
-        sidePanel.add(Logo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 200, 40));
+        MClogo.setBackground(new java.awt.Color(51, 51, 255));
+        MClogo.setFont(new java.awt.Font("STXinwei", 1, 24)); // NOI18N
+        MClogo.setText("Movie Collection");
+        sidePanel.add(MClogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 200, 40));
 
-        Logo4.setBackground(new java.awt.Color(51, 51, 255));
-        Logo4.setFont(new java.awt.Font("STXinwei", 1, 20)); // NOI18N
-        Logo4.setText("MANAGEMENT");
-        sidePanel.add(Logo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 180, 40));
+        manageLogo.setBackground(new java.awt.Color(51, 51, 255));
+        manageLogo.setFont(new java.awt.Font("STXinwei", 1, 20)); // NOI18N
+        manageLogo.setText("MANAGEMENT");
+        sidePanel.add(manageLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 180, 40));
 
-        Logo5.setBackground(new java.awt.Color(51, 51, 255));
-        Logo5.setFont(new java.awt.Font("STXinwei", 1, 20)); // NOI18N
-        Logo5.setText("SYSTEM");
-        sidePanel.add(Logo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 90, 40));
+        systemLogo.setBackground(new java.awt.Color(51, 51, 255));
+        systemLogo.setFont(new java.awt.Font("STXinwei", 1, 20)); // NOI18N
+        systemLogo.setText("SYSTEM");
+        sidePanel.add(systemLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 90, 40));
 
         Home.setBackground(java.awt.Color.yellow);
         Home.setFont(new java.awt.Font("STZhongsong", 1, 18)); // NOI18N
@@ -548,11 +547,6 @@ public class Admin extends javax.swing.JFrame {
 
         sidePanelBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/side panel.png"))); // NOI18N
         sidePanel.add(sidePanelBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, -1));
-
-        Logo6.setBackground(new java.awt.Color(51, 51, 255));
-        Logo6.setFont(new java.awt.Font("STXinwei", 1, 20)); // NOI18N
-        Logo6.setText("MANAGEMENT");
-        sidePanel.add(Logo6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 180, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -773,11 +767,8 @@ public class Admin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton History;
     private javax.swing.JButton Home;
-    private javax.swing.JLabel Logo2;
-    private javax.swing.JLabel Logo4;
-    private javax.swing.JLabel Logo5;
-    private javax.swing.JLabel Logo6;
     private javax.swing.JLabel Logo7;
+    private javax.swing.JLabel MClogo;
     private javax.swing.JButton Manage;
     private javax.swing.JButton SearchSort;
     private javax.swing.JButton addButton;
@@ -798,6 +789,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable mainTable;
+    private javax.swing.JLabel manageLogo;
     private javax.swing.JTextField movieIDfield;
     private javax.swing.JLabel movieIDlabel;
     private javax.swing.JTextField movieNameField;
@@ -808,6 +800,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JPanel searchSortPanel;
     private javax.swing.JPanel sidePanel;
     private javax.swing.JLabel sidePanelBG;
+    private javax.swing.JLabel systemLogo;
     private javax.swing.JButton updateButton;
     private javax.swing.JLabel welcomeLabel;
     private javax.swing.JTextField yearField;

@@ -15,10 +15,12 @@ public class LoginController {
     
     private static final String ADMIN_USERNAME = "admin";
     private static final String ADMIN_PASSWORD = "123";
+    private static final String USER_USERNAME = "abhee";
+    private static final String USER_PASSWORD = "123";
     
     public static boolean validateAdmin(String username, String password) {
         
-        boolean isValid = ADMIN_USERNAME.equals(username) && ADMIN_PASSWORD.equals(password);
+        boolean isValid = (ADMIN_USERNAME.equals(username) && ADMIN_PASSWORD.equals(password))||(USER_USERNAME.equals(username)&& USER_PASSWORD.equals(password));
         
         if (!isValid) {
             System.out.println("Login failed. Username: " + username + ", Password: " + password);
