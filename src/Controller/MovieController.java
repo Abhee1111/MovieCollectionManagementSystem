@@ -212,7 +212,7 @@ public class MovieController {
         return database.getAllMovies();
     }
 
-    public ArrayList<Movie> getDashboardMovies() {
+    public LinkedList<Movie> getDashboardMovies() {
         return database.getDashboardMovies();
     }
 

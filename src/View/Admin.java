@@ -1051,8 +1051,8 @@ public class Admin extends javax.swing.JFrame {
     private void loadDashboardData() {
         dashboardModel.setRowCount(0);
 
-        // Get dashboard movies from controller (last 5 movies)
-        java.util.ArrayList<Model.Movie> movies = movieController.getDashboardMovies();
+        // Get dashboard movies from controller (LinkedList - last 5 movies)
+        java.util.LinkedList<Model.Movie> movies = movieController.getDashboardMovies();
 
         for (Model.Movie movie : movies) {
             dashboardModel.addRow(new Object[]{
