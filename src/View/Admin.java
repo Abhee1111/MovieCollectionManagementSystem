@@ -5,9 +5,12 @@
 package View;
 
 import Controller.MovieController;
+import Model.Movie;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,9 +21,10 @@ public class Admin extends javax.swing.JFrame {
     CardLayout cardLayout;
 
     private MovieController movieController;
-    private javax.swing.table.DefaultTableModel dashboardModel;
-    private javax.swing.table.DefaultTableModel mainModel;
-    private javax.swing.table.DefaultTableModel historyModel;
+    private DefaultTableModel dashboardModel;
+    private DefaultTableModel mainModel;
+    private DefaultTableModel historyModel;
+    private DefaultTableModel searchSortModel;
 
     public Admin() {
         initComponents();
@@ -28,10 +32,11 @@ public class Admin extends javax.swing.JFrame {
 
         movieController = new MovieController();
 
-        dashboardModel = (javax.swing.table.DefaultTableModel) dashboardTable.getModel();
-        mainModel = (javax.swing.table.DefaultTableModel) mainTable.getModel();
-        historyModel = (javax.swing.table.DefaultTableModel) historyTable.getModel();
-        
+        dashboardModel = (DefaultTableModel) dashboardMovieTable.getModel();
+        mainModel = (DefaultTableModel) mainTable.getModel();
+        historyModel = (DefaultTableModel) historyTable.getModel();
+        searchSortModel = (DefaultTableModel) searchSortTable.getModel();
+
         loadDashboardData();
         loadMainTableData();
         loadHistoryData();
@@ -47,10 +52,10 @@ public class Admin extends javax.swing.JFrame {
 
         parentPanel = new javax.swing.JPanel();
         homePanel = new javax.swing.JPanel();
-        welcomeLabel = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        dashboardTable = new javax.swing.JTable();
-        Logo7 = new javax.swing.JLabel();
+        Logo8 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        dashboardMovieTable = new javax.swing.JTable();
+        Logo9 = new javax.swing.JLabel();
         crudPanel = new javax.swing.JPanel();
         movieIDlabel = new javax.swing.JLabel();
         movieNameLabel = new javax.swing.JLabel();
@@ -69,8 +74,19 @@ public class Admin extends javax.swing.JFrame {
         deleteButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         mainTable = new javax.swing.JTable();
+        undoButton = new javax.swing.JButton();
         searchSortPanel = new javax.swing.JPanel();
+        searchSortTitle = new javax.swing.JLabel();
+        searchSortText = new javax.swing.JTextField();
+        searchByName = new javax.swing.JButton();
+        searchByGenre = new javax.swing.JButton();
+        sortByYear = new javax.swing.JButton();
+        sortByRating = new javax.swing.JButton();
+        sortByName = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        searchSortTable = new javax.swing.JTable();
         historyPanel = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -94,10 +110,11 @@ public class Admin extends javax.swing.JFrame {
         homePanel.setBackground(new java.awt.Color(255, 204, 0));
         homePanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 255), 3));
 
-        welcomeLabel.setFont(new java.awt.Font("STXinwei", 1, 24)); // NOI18N
-        welcomeLabel.setText("Welcome to the dashboard, Admin");
+        Logo8.setBackground(new java.awt.Color(51, 51, 255));
+        Logo8.setFont(new java.awt.Font("STXinwei", 1, 18)); // NOI18N
+        Logo8.setText("Here are all the available movies at the system.");
 
-        dashboardTable.setModel(new javax.swing.table.DefaultTableModel(
+        dashboardMovieTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -124,39 +141,41 @@ public class Admin extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(dashboardTable);
+        jScrollPane4.setViewportView(dashboardMovieTable);
+        if (dashboardMovieTable.getColumnModel().getColumnCount() > 0) {
+            dashboardMovieTable.getColumnModel().getColumn(5).setHeaderValue("Raitng");
+        }
 
-        Logo7.setBackground(new java.awt.Color(51, 51, 255));
-        Logo7.setFont(new java.awt.Font("STXinwei", 1, 18)); // NOI18N
-        Logo7.setText("Here are your available movies at the system.");
+        Logo9.setBackground(new java.awt.Color(51, 51, 255));
+        Logo9.setFont(new java.awt.Font("STXinwei", 1, 24)); // NOI18N
+        Logo9.setText("Welcome to the dashboard, Admin");
 
         javax.swing.GroupLayout homePanelLayout = new javax.swing.GroupLayout(homePanel);
         homePanel.setLayout(homePanelLayout);
         homePanelLayout.setHorizontalGroup(
             homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(homePanelLayout.createSequentialGroup()
-                .addContainerGap(111, Short.MAX_VALUE)
+                .addContainerGap(113, Short.MAX_VALUE)
                 .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67))
+                        .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Logo8, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(65, 65, 65))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePanelLayout.createSequentialGroup()
-                        .addComponent(welcomeLabel)
-                        .addGap(221, 221, 221))
-                    .addGroup(homePanelLayout.createSequentialGroup()
-                        .addComponent(Logo7, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addComponent(Logo9)
+                        .addGap(232, 232, 232))))
         );
         homePanelLayout.setVerticalGroup(
             homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(homePanelLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(welcomeLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addComponent(Logo7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84))
+                .addGap(18, 18, 18)
+                .addComponent(Logo9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addComponent(Logo8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
         );
 
         parentPanel.add(homePanel, "Home");
@@ -288,54 +307,68 @@ public class Admin extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(mainTable);
 
+        undoButton.setBackground(new java.awt.Color(153, 0, 255));
+        undoButton.setFont(new java.awt.Font("STXinwei", 1, 18)); // NOI18N
+        undoButton.setText("Undo");
+        undoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                undoButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout crudPanelLayout = new javax.swing.GroupLayout(crudPanel);
         crudPanel.setLayout(crudPanelLayout);
         crudPanelLayout.setHorizontalGroup(
             crudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(crudPanelLayout.createSequentialGroup()
-                .addGroup(crudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(crudPanelLayout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addGroup(crudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(directorLabel)
-                            .addComponent(movieIDlabel)
-                            .addComponent(genreLabel))
-                        .addGap(18, 18, 18)
-                        .addGroup(crudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(movieIDfield, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(directorField, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(crudPanelLayout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addGroup(crudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(genreCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(crudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(crudPanelLayout.createSequentialGroup()
-                        .addGroup(crudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(movieNameLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(yearLabel, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
-                        .addGroup(crudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(movieNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(yearField, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(crudPanelLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(ratingLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(ratingCombobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crudPanelLayout.createSequentialGroup()
-                .addContainerGap(54, Short.MAX_VALUE)
-                .addGroup(crudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crudPanelLayout.createSequentialGroup()
-                        .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(81, 81, 81)
-                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(157, 157, 157))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crudPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 767, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63))))
+                .addGroup(crudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(crudPanelLayout.createSequentialGroup()
+                        .addGroup(crudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(crudPanelLayout.createSequentialGroup()
+                                .addGap(79, 79, 79)
+                                .addGroup(crudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(crudPanelLayout.createSequentialGroup()
+                                        .addGroup(crudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(directorLabel)
+                                            .addComponent(movieIDlabel)
+                                            .addComponent(genreLabel))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(crudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(movieIDfield, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(directorField, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(crudPanelLayout.createSequentialGroup()
+                                        .addGap(7, 7, 7)
+                                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(51, 51, 51)
+                                        .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(crudPanelLayout.createSequentialGroup()
+                                .addGap(154, 154, 154)
+                                .addComponent(genreCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(crudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(crudPanelLayout.createSequentialGroup()
+                                    .addGroup(crudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(movieNameLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(yearLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(crudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(movieNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(yearField, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(crudPanelLayout.createSequentialGroup()
+                                    .addGap(40, 40, 40)
+                                    .addComponent(ratingLabel)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(ratingCombobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crudPanelLayout.createSequentialGroup()
+                                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(52, 52, 52)
+                                .addComponent(undoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18))))
+                    .addGroup(crudPanelLayout.createSequentialGroup()
+                        .addContainerGap(54, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 767, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(63, 63, 63))
         );
         crudPanelLayout.setVerticalGroup(
             crudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -362,7 +395,8 @@ public class Admin extends javax.swing.JFrame {
                 .addGroup(crudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addButton)
                     .addComponent(updateButton)
-                    .addComponent(deleteButton))
+                    .addComponent(deleteButton)
+                    .addComponent(undoButton))
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(26, Short.MAX_VALUE))
@@ -373,23 +407,146 @@ public class Admin extends javax.swing.JFrame {
         searchSortPanel.setBackground(new java.awt.Color(255, 204, 0));
         searchSortPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 255), 3));
 
-        jLabel2.setText("Search");
+        searchSortTitle.setFont(new java.awt.Font("STXinwei", 1, 30)); // NOI18N
+        searchSortTitle.setText("Search & Sort your movies");
+
+        searchSortText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchSortTextActionPerformed(evt);
+            }
+        });
+
+        searchByName.setText("Search By Movie Name");
+        searchByName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchByNameActionPerformed(evt);
+            }
+        });
+
+        searchByGenre.setText("Search By Genre");
+        searchByGenre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchByGenreActionPerformed(evt);
+            }
+        });
+
+        sortByYear.setText("Year");
+        sortByYear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortByYearActionPerformed(evt);
+            }
+        });
+
+        sortByRating.setText("Rating");
+        sortByRating.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortByRatingActionPerformed(evt);
+            }
+        });
+
+        sortByName.setText("Movie Name");
+        sortByName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortByNameActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
+        jLabel1.setText("Search Movie by it's:");
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
+        jLabel2.setText("Sort Movie by it's:");
+
+        searchSortTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Movie ID", "Movie Name", "Director", "Year", "Genre", "Raitng"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(searchSortTable);
+        if (searchSortTable.getColumnModel().getColumnCount() > 0) {
+            searchSortTable.getColumnModel().getColumn(5).setHeaderValue("Raitng");
+        }
 
         javax.swing.GroupLayout searchSortPanelLayout = new javax.swing.GroupLayout(searchSortPanel);
         searchSortPanel.setLayout(searchSortPanelLayout);
         searchSortPanelLayout.setHorizontalGroup(
             searchSortPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchSortPanelLayout.createSequentialGroup()
-                .addGap(404, 404, 404)
+                .addGap(17, 17, 17)
+                .addComponent(sortByName)
+                .addGap(18, 18, 18)
+                .addComponent(sortByYear)
+                .addGap(18, 18, 18)
+                .addComponent(sortByRating)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                .addComponent(searchSortText, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(searchByName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(searchByGenre)
+                .addContainerGap())
+            .addGroup(searchSortPanelLayout.createSequentialGroup()
+                .addGap(100, 100, 100)
                 .addComponent(jLabel2)
-                .addContainerGap(445, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(179, 179, 179))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchSortPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(searchSortTitle)
+                .addGap(259, 259, 259))
+            .addGroup(searchSortPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(searchSortPanelLayout.createSequentialGroup()
+                    .addGap(73, 73, 73)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 768, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(43, Short.MAX_VALUE)))
         );
         searchSortPanelLayout.setVerticalGroup(
             searchSortPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchSortPanelLayout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addComponent(jLabel2)
-                .addContainerGap(465, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(searchSortTitle)
+                .addGap(40, 40, 40)
+                .addGroup(searchSortPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(searchSortPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchSortText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchByName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchByGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sortByYear, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sortByRating, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sortByName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(417, 417, 417))
+            .addGroup(searchSortPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(searchSortPanelLayout.createSequentialGroup()
+                    .addGap(201, 201, 201)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(46, Short.MAX_VALUE)))
         );
 
         parentPanel.add(searchSortPanel, "search");
@@ -398,7 +555,7 @@ public class Admin extends javax.swing.JFrame {
         historyPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 255), 3));
 
         jLabel10.setFont(new java.awt.Font("STXinwei", 1, 24)); // NOI18N
-        jLabel10.setText("History Table");
+        jLabel10.setText("Delete History Table");
 
         historyTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -451,7 +608,7 @@ public class Admin extends javax.swing.JFrame {
 
         deleteHistoryButton.setBackground(new java.awt.Color(255, 153, 0));
         deleteHistoryButton.setFont(new java.awt.Font("STXinwei", 1, 14)); // NOI18N
-        deleteHistoryButton.setText("Delete History");
+        deleteHistoryButton.setText("Clear history");
         deleteHistoryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteHistoryButtonActionPerformed(evt);
@@ -580,6 +737,8 @@ public class Admin extends javax.swing.JFrame {
         Manage.setBackground(Color.white);
         SearchSort.setBackground(Color.yellow);
         History.setBackground(Color.white);
+
+        loadSearchSortTable(movieController.getAllMovies());
     }//GEN-LAST:event_SearchSortActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
@@ -599,7 +758,7 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_HistoryActionPerformed
 
     private void movieIDfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movieIDfieldActionPerformed
-      
+
     }//GEN-LAST:event_movieIDfieldActionPerformed
 
     private void movieNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movieNameFieldActionPerformed
@@ -629,9 +788,14 @@ public class Admin extends javax.swing.JFrame {
         String yearText = yearField.getText().trim();
         String genre = (String) genreCombobox.getSelectedItem();
         String ratingText = (String) ratingCombobox.getSelectedItem();
-        
+
+        // Validate all fields are filled
         if (idText.isEmpty() || title.isEmpty() || director.isEmpty() || yearText.isEmpty()) {
-            JOptionPane.showMessageDialog(this,"Please fill all fields!","Empty Fields",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    "Please fill all required fields!\n"
+                    + "Movie ID, Title, Director, and Year are required.",
+                    "Empty Fields",
+                    JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -639,7 +803,8 @@ public class Admin extends javax.swing.JFrame {
             int id = Integer.parseInt(idText);
             int year = Integer.parseInt(yearText);
             int rating = Integer.parseInt(ratingText);
-            boolean success = movieController.addMovie(id,title, director, year, genre, rating, this);
+
+            boolean success = movieController.addMovie(id, title, director, year, genre, rating, this);
 
             if (success) {
                 loadMainTableData();
@@ -648,7 +813,12 @@ public class Admin extends javax.swing.JFrame {
             }
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this,"ID and Year must be a valid number!","Invalid Input",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    "ID and Year must be valid numbers!\n"
+                    + "ID: Integer (e.g., 101)\n"
+                    + "Year: Integer between 1900-2025",
+                    "Invalid Input",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -656,27 +826,26 @@ public class Admin extends javax.swing.JFrame {
         String idText = movieIDfield.getText().trim();
 
         if (idText.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter Movie ID to update!", "No ID", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    "Please enter Movie ID to update!\n"
+                    + "Only Movie ID is required. Other fields can be left empty to keep current values.",
+                    "No ID",
+                    JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         try {
             int id = Integer.parseInt(idText);
-            
+
             String title = movieNameField.getText().trim();
             String director = directorField.getText().trim();
             String yearText = yearField.getText().trim();
             String genre = (String) genreCombobox.getSelectedItem();
             String ratingText = (String) ratingCombobox.getSelectedItem();
 
-            int year = 0;
-            if (!yearText.isEmpty()) {
-                year = Integer.parseInt(yearText);
-            }
-            
-            int rating = Integer.parseInt(ratingText);
-
-            boolean success = movieController.updateMovie(id, title, director, year, genre, rating, this);
+            boolean success = movieController.updateMovie(id, title, director,
+                    yearText.isEmpty() ? 0 : Integer.parseInt(yearText),
+                    genre, ratingText, this);
 
             if (success) {
                 loadMainTableData();
@@ -685,7 +854,11 @@ public class Admin extends javax.swing.JFrame {
             }
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "ID and Year must be valid numbers!", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    "ID and Year must be valid numbers!\n"
+                    + "If updating Year, it must be between 1900-2025",
+                    "Invalid Input",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_updateButtonActionPerformed
 
@@ -693,61 +866,258 @@ public class Admin extends javax.swing.JFrame {
         String idText = movieIDfield.getText().trim();
 
         if (idText.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter Movie ID to delete!", "No ID", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    "Please enter Movie ID to delete!\n"
+                    + "Enter the Movie ID of the movie you want to delete.",
+                    "No ID",
+                    JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         try {
             int id = Integer.parseInt(idText);
 
-            int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete Movie ID: " + id + "?\n\nThis will move it to History.", "Confirm Delete", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            boolean success = movieController.deleteMovie(id, this);
 
-            if (confirm == JOptionPane.YES_OPTION) {
-                boolean success = movieController.deleteMovie(id, this);
-
-                if (success) {
-                    loadMainTableData();
-                    loadDashboardData();
-                    loadHistoryData();                
-                    clearFields();
-                }
+            if (success) {
+                loadMainTableData();
+                loadDashboardData();
+                loadHistoryData();
+                clearFields();
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Movie ID must be a valid number!", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    "Movie ID must be a valid number!",
+                    "Invalid Input",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void deleteHistoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteHistoryButtonActionPerformed
-        
+        movieController.clearHistory(this);
+        loadHistoryData();
     }//GEN-LAST:event_deleteHistoryButtonActionPerformed
 
+    private void undoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoButtonActionPerformed
+        boolean success = movieController.undoDelete(this);
+
+        if (success) {
+            loadMainTableData();
+            loadDashboardData();
+            loadHistoryData();
+        }
+    }//GEN-LAST:event_undoButtonActionPerformed
+
+    private void searchByNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByNameActionPerformed
+        String searchText = searchSortText.getText().trim();
+
+        if (searchText.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Please enter a movie name to search!",
+                    "Empty Search",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Use Binary Search for exact match
+        Movie movie = movieController.binarySearchByTitle(searchText);
+
+        if (movie != null) {
+            ArrayList<Movie> result = new ArrayList<>();
+            result.add(movie);
+            loadSearchSortTable(result);
+
+            JOptionPane.showMessageDialog(this,
+                    "Movie found!\n\n"
+                    + "Title: " + movie.getTitle() + "\n"
+                    + "Director: " + movie.getDirector() + "\n"
+                    + "Year: " + movie.getYear(),
+                    "Search Result",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            loadSearchSortTable(new ArrayList<>());
+            JOptionPane.showMessageDialog(this,
+                    "Movie not found!\n\n"
+                    + "No movie with title: " + searchText + "\n"
+                    + "Note: Binary search requires exact title match.",
+                    "Not Found",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_searchByNameActionPerformed
+
+    private void searchByGenreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByGenreActionPerformed
+        String searchText = searchSortText.getText().trim();
+
+        if (searchText.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Please enter a genre to search!\n"
+                    + "Examples: Action, Drama, Comedy, Horror",
+                    "Empty Search",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Use Linear Search for partial matches
+        ArrayList<Movie> results = movieController.searchByGenre(searchText);
+
+        if (!results.isEmpty()) {
+            loadSearchSortTable(results);
+
+            JOptionPane.showMessageDialog(this,
+                    "Found " + results.size() + " movie(s) in genre: " + searchText,
+                    "Search Results",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            loadSearchSortTable(new ArrayList<>());
+            JOptionPane.showMessageDialog(this,
+                    "No movies found in genre: " + searchText + "\n"
+                    + "Note: Search is case-insensitive and supports partial matches.",
+                    "No Results",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_searchByGenreActionPerformed
+
+    private void sortByNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortByNameActionPerformed
+        ArrayList<Movie> allMovies = movieController.getAllMovies();
+
+        if (allMovies.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "No movies to sort!",
+                    "Empty List",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Use Insertion Sort for alphabetical order
+        ArrayList<Movie> sortedMovies = movieController.insertionSortByTitle(allMovies);
+        loadSearchSortTable(sortedMovies);
+
+        JOptionPane.showMessageDialog(this,
+                "Sorted " + sortedMovies.size() + " movies alphabetically by name (A-Z).\n"
+                + "Algorithm used: Insertion Sort",
+                "Sort Complete",
+                JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_sortByNameActionPerformed
+
+    private void sortByYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortByYearActionPerformed
+        ArrayList<Movie> allMovies = movieController.getAllMovies();
+
+        if (allMovies.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "No movies to sort!",
+                    "Empty List",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Use Selection Sort for year (ascending)
+        ArrayList<Movie> sortedMovies = movieController.selectionSortByYear(allMovies);
+        loadSearchSortTable(sortedMovies);
+
+        JOptionPane.showMessageDialog(this,
+                "Sorted " + sortedMovies.size() + " movies by year (oldest to newest).\n"
+                + "Algorithm used: Selection Sort",
+                "Sort Complete",
+                JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_sortByYearActionPerformed
+
+    private void sortByRatingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortByRatingActionPerformed
+        ArrayList<Movie> allMovies = movieController.getAllMovies();
+
+        if (allMovies.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "No movies to sort!",
+                    "Empty List",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Use Merge Sort for rating (descending)
+        ArrayList<Movie> sortedMovies = movieController.mergeSortByRating(allMovies);
+        loadSearchSortTable(sortedMovies);
+
+        JOptionPane.showMessageDialog(this,
+                "Sorted " + sortedMovies.size() + " movies by rating (highest to lowest).\n"
+                + "Algorithm used: Merge Sort",
+                "Sort Complete",
+                JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_sortByRatingActionPerformed
+
+    private void searchSortTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchSortTextActionPerformed
+        searchByNameActionPerformed(evt);
+    }//GEN-LAST:event_searchSortTextActionPerformed
+
+    // ============ TABLE LOADING METHODS ============
     private void loadDashboardData() {
         dashboardModel.setRowCount(0);
-        
-        java.util.ArrayList<Model.Movie> movies = movieController.getAllMovies();
-        
+
+        // Get dashboard movies from controller (last 5 movies)
+        java.util.ArrayList<Model.Movie> movies = movieController.getDashboardMovies();
+
         for (Model.Movie movie : movies) {
-            dashboardModel.addRow(new Object[]{ movie.getId(), movie.getTitle(), movie.getDirector(), movie.getYear(), movie.getGenre(), movie.getRating()});
+            dashboardModel.addRow(new Object[]{
+                movie.getId(),
+                movie.getTitle(),
+                movie.getDirector(),
+                movie.getYear(),
+                movie.getGenre(),
+                movie.getRating()
+            });
         }
     }
 
     private void loadMainTableData() {
         mainModel.setRowCount(0);
 
+        // Get all movies from controller (ArrayList)
         java.util.ArrayList<Model.Movie> movies = movieController.getAllMovies();
 
         for (Model.Movie movie : movies) {
-            mainModel.addRow(new Object[]{ movie.getId(), movie.getTitle(), movie.getDirector(), movie.getYear(), movie.getGenre(), movie.getRating()});
+            mainModel.addRow(new Object[]{
+                movie.getId(),
+                movie.getTitle(),
+                movie.getDirector(),
+                movie.getYear(),
+                movie.getGenre(),
+                movie.getRating()
+            });
         }
     }
 
     private void loadHistoryData() {
         historyModel.setRowCount(0);
-        
+
+        // Get history from controller (Queue)
         java.util.ArrayList<Model.Movie> history = movieController.getHistory();
 
         for (Model.Movie movie : history) {
-            historyModel.addRow(new Object[]{ movie.getId(), movie.getTitle(), movie.getDirector(), movie.getYear(), movie.getGenre(), movie.getRating()});
+            historyModel.addRow(new Object[]{
+                movie.getId(),
+                movie.getTitle(),
+                movie.getDirector(),
+                movie.getYear(),
+                movie.getGenre(),
+                movie.getRating()
+            });
+        }
+    }
+
+    private void loadSearchSortTable(ArrayList<Movie> movies) {
+        searchSortModel.setRowCount(0);
+
+        if (movies == null || movies.isEmpty()) {
+            return;
+        }
+
+        for (Movie movie : movies) {
+            searchSortModel.addRow(new Object[]{
+                movie.getId(),
+                movie.getTitle(),
+                movie.getDirector(),
+                movie.getYear(),
+                movie.getGenre(),
+                movie.getRating()
+            });
         }
     }
 
@@ -757,7 +1127,28 @@ public class Admin extends javax.swing.JFrame {
         directorField.setText("");
         yearField.setText("");
         genreCombobox.setSelectedIndex(0);
-        ratingCombobox.setSelectedIndex(0);
+        ratingCombobox.setSelectedIndex(4); // Default to 5
+    }
+
+    private void loadMovieDetailsIntoFields(int movieId) {
+        Movie movie = movieController.getMovieById(movieId);
+        if (movie != null) {
+            movieIDfield.setText(String.valueOf(movie.getId()));
+            movieNameField.setText(movie.getTitle());
+            directorField.setText(movie.getDirector());
+            yearField.setText(String.valueOf(movie.getYear()));
+
+            // Set genre combobox
+            for (int i = 0; i < genreCombobox.getItemCount(); i++) {
+                if (genreCombobox.getItemAt(i).equals(movie.getGenre())) {
+                    genreCombobox.setSelectedIndex(i);
+                    break;
+                }
+            }
+
+            // Set rating combobox (rating is 1-5, combobox index is 0-4)
+            ratingCombobox.setSelectedIndex(movie.getRating() - 1);
+        }
     }
 
     public static void main(String args[]) {
@@ -767,13 +1158,14 @@ public class Admin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton History;
     private javax.swing.JButton Home;
-    private javax.swing.JLabel Logo7;
+    private javax.swing.JLabel Logo8;
+    private javax.swing.JLabel Logo9;
     private javax.swing.JLabel MClogo;
     private javax.swing.JButton Manage;
     private javax.swing.JButton SearchSort;
     private javax.swing.JButton addButton;
     private javax.swing.JPanel crudPanel;
-    private javax.swing.JTable dashboardTable;
+    private javax.swing.JTable dashboardMovieTable;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton deleteHistoryButton;
     private javax.swing.JTextField directorField;
@@ -783,11 +1175,13 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JPanel historyPanel;
     private javax.swing.JTable historyTable;
     private javax.swing.JPanel homePanel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable mainTable;
     private javax.swing.JLabel manageLogo;
     private javax.swing.JTextField movieIDfield;
@@ -797,12 +1191,20 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JPanel parentPanel;
     private javax.swing.JComboBox<String> ratingCombobox;
     private javax.swing.JLabel ratingLabel;
+    private javax.swing.JButton searchByGenre;
+    private javax.swing.JButton searchByName;
     private javax.swing.JPanel searchSortPanel;
+    private javax.swing.JTable searchSortTable;
+    private javax.swing.JTextField searchSortText;
+    private javax.swing.JLabel searchSortTitle;
     private javax.swing.JPanel sidePanel;
     private javax.swing.JLabel sidePanelBG;
+    private javax.swing.JButton sortByName;
+    private javax.swing.JButton sortByRating;
+    private javax.swing.JButton sortByYear;
     private javax.swing.JLabel systemLogo;
+    private javax.swing.JButton undoButton;
     private javax.swing.JButton updateButton;
-    private javax.swing.JLabel welcomeLabel;
     private javax.swing.JTextField yearField;
     private javax.swing.JLabel yearLabel;
     // End of variables declaration//GEN-END:variables
